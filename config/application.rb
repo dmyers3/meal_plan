@@ -16,3 +16,7 @@ module Meal
     # -- all .rb files in that directory are automatically loaded.
   end
 end
+
+Raven.configure do |config|
+  config.dsn = 'https://5818f615d8b14ac89cf0825e4fe5e58f:33d5cdd65d4c428abfb7e987a2c1bf52@sentry.io/195167'
+end
