@@ -1,0 +1,17 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: meal_planner_development
+  pool: 5
+  username: ubuntu
+  password:
+  template: template0
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: meal_planner_test
+  pool: 5
+  username: ubuntu
+  password:
+  template: template0
