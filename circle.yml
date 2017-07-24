@@ -1,0 +1,27 @@
+machine:
+  ruby:
+    version: 2.3.1
+  services:
+    - elasticsearch
+dependencies:
+  pre:
+    - gem install bundler
+deployment:
+  production:
+    branch: master
+    heroku:
+      appname: myflix-app-dmyers3
+    commands:
+      - heroku maintenance:on --app dmyers3-meal-plan
+      - heroku pg:backups capture --dmyers3-meal-plan
+      - git push git@heroku.com:dmyers3-meal-plan.git $CIRCLE_SHA1:refs/heads/master
+      - heroku run rake db:migrate --app dmyers3-meal-plan
+      - heroku maintenance:off --app dmyers3-meal-plan
+  staging:
+    branch: staging
+    commands:
+      - heroku maintenance:on --app staging_app_name
+      - git push git@heroku.com:staging_app_name.git $CIRCLE_SHA1:refs/heads/master
+      - heroku run rake db:migrate --app staging_app_name
+      - heroku maintenance:off --app staging_app_name
+    
