@@ -15,8 +15,8 @@ deployment:
   staging:
     branch: staging
     commands:
-      - heroku maintenance:on --app dmyers3-meal-staging
-      - git push git@heroku.com:dmyers3-meal-staging.git $CIRCLE_SHA1:refs/heads/master
-      - heroku run rake db:migrate --app dmyers3-meal-staging
-      - heroku maintenance:off --app dmyers3-meal-staging
+      - heroku maintenance:on --app dmyers3-meal-plan-staging
+      - git push git@heroku.com:dmyers3-meal-plan-staging.git $CIRCLE_SHA1:refs/heads/master
+      - heroku run rake db:migrate --app dmyers3-meal-plan-staging
+      - heroku maintenance:off --app dmyers3-meal-plan-staging
     
