@@ -22,6 +22,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'bundler'
 gem 'sentry-raven'
 gem 'bcrypt', '~> 3.1.7'
+gem 'figaro'
+gem 'foreman'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 

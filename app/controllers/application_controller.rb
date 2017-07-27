@@ -8,6 +8,10 @@ class ApplicationController < ActionController::Base
     "Pass The Cheddar"
   end
   
+  def app_email
+    "support@passthecheddar.com"
+  end
+  
   def current_user
     @current_user ||= session[:user_id] ? User.find(session[:user_id]) : nil
   end
@@ -23,9 +27,9 @@ class ApplicationController < ActionController::Base
     end
   end
   
-  # def redirect_logged_in
-  #   redirect_to home_path if logged_in?
-  # end
+  def redirect_logged_in
+    redirect_to home_path if logged_in?
+  end
   
   private
 
