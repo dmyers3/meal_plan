@@ -1,0 +1,19 @@
+.register 
+  %h1 Create Your Free Account
+  %h3 You're on your way to saving time and money on groceries
+  %section.container
+    .row
+      .col-sm-4.col-sm-offset-1
+        %img
+      .col-sm-5
+        = bootstrap_form_for @user, layout: :horizontal, label_col: "col-sm-4", control_col: "col-sm-6" do |f|
+          %fieldset
+            = f.email_field :email, label: "Email Address"
+            = f.password_field :password, placeholder: "Must be at least 8 characters"
+            = f.text_field :zip_code, label: "Zip Code"
+          %fieldset.actions.control-group.col-sm-offset-2
+            .controls
+              = f.submit "Sign Up"
+    
+  
+  

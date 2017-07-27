@@ -1,0 +1,15 @@
+%section#front-header.row
+  %h1.col-md-2
+    = link_to app_name, root_path
+  %ul.col-md-4.clearfix
+    %li= link_to "How it Works", ""
+    %li= link_to "Pricing", ""
+    %li= link_to "Blog", ""
+  %ul.col-md-4.clearfix.pull-right
+    - if !logged_in?
+      %li= link_to "Login", login_path
+      %li= link_to "Sign Up", register_path
+    - else
+      %li= link_to "My Account", ""
+      %li= link_to "Logout", logout_path
+        

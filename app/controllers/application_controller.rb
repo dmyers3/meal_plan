@@ -2,6 +2,31 @@ class ApplicationController < ActionController::Base
   before_action :set_raven_context
   protect_from_forgery with: :exception
   
+  helper_method :logged_in?, :current_user, :app_name
+  
+  def app_name
+    "Pass The Cheddar"
+  end
+  
+  def current_user
+    @current_user ||= session[:user_id] ? User.find(session[:user_id]) : nil
+  end
+  
+  def logged_in?
+    !!current_user
+  end
+  
+  def redirect_logged_out
+    if !logged_in?
+      flash[:error] = "Access reserved for members only. Please sign in or register first."
+      redirect_to root_path
+    end
+  end
+  
+  # def redirect_logged_in
+  #   redirect_to home_path if logged_in?
+  # end
+  
   private
 
   def set_raven_context
