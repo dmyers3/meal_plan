@@ -44,5 +44,25 @@ describe UsersController do
         expect(assigns(:user)).to be_a(User)
       end
     end
+    
+    context "sending emails" do
+      let(:user_attributes) { Fabricate.attributes_for(:user) }
+      before do
+        AppMailer.deliveries.clear
+        post :create, params: { user: user_attributes }
+      end
+      
+      it "sends an email after creating user" do
+        expect(AppMailer.deliveries.count).to eq(1)
+      end
+      
+      it "sends an email to the right user" do
+        expect(AppMailer.deliveries.last.to).to eq([user_attributes['email']])
+      end
+      
+      it "includes a welcome message" do
+        expect(AppMailer.deliveries.last.body).to include('Welcome')
+      end
+    end
   end
 end
