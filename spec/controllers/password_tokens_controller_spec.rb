@@ -19,6 +19,31 @@ describe PasswordTokensController do
         expect(response).to redirect_to confirm_reset_password_path
       end
     end
+    
+    context "with invalid email" do
+      let(:dan) { Fabricate(:user) }
+      before { post :create, params: { email: "incorrectemail@example.com" }}
+      it "sets an error message" do
+        expect(flash[:error]).not_to be_nil
+      end
+      
+      it "renders the reset password form" do
+        expect(response).to render_template :new
+      end
+    end
+    
+    context "with empty email" do
+      let(:dan) { Fabricate(:user) }
+      before { post :create, params: { email: "" }}
+      
+      it "sets an error message" do
+        expect(flash[:error]).not_to be_nil
+      end
+      
+      it "renders the reset password form" do
+        expect(response).to render_template :new
+      end
+    end
   end
 end
 

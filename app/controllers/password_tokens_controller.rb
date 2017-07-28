@@ -8,6 +8,7 @@ class PasswordTokensController < ApplicationController
     @user = User.find_by(email: params[:email])
     if @user
       @user.assign_token
+      AppMailer.delay.send_reset_password(@user.id)
       redirect_to confirm_reset_password_path
     else
       flash[:error] = "Could not find email address."

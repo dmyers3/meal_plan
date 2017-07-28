@@ -9,11 +9,13 @@ Rails.application.routes.draw do
   
   get 'reset_password', to: 'password_tokens#new'
   post 'reset_password', to: 'password_tokens#create'
-  delete 'password/:id', to: 'password_tokens#destroy'
   get 'confirm_reset_password', to: 'password_tokens#confirm'
   
 
   resources :users, only: [:create]
+  
+  resources :new_passwords, only: [:show, :create]
+  get 'expired_token', to: 'new_passwords#expired_token'
   
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"

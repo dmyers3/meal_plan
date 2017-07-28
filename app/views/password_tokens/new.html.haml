@@ -9,6 +9,6 @@
           %label(for="email") Email Address
           .row
             .col-sm-4
-              %input.form-control(type="email" name="email" id="email")
+              %input.form-control(type="email" name="email" id="email" value="#{params[:email]}")
         .form-group.action
           %input(type="submit" value="Send Email" class="btn btn-default")
