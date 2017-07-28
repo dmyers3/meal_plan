@@ -24,6 +24,7 @@ gem 'sentry-raven'
 gem 'bcrypt', '~> 3.1.7'
 gem 'figaro'
 gem 'foreman'
+gem 'redis'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 
