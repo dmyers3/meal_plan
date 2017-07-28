@@ -1,14 +1,28 @@
 require 'rails_helper'
 
 describe UsersController do
+  describe "GET front" do
+    it_behaves_like "requires signed out" do
+      let(:action) { get :front }
+    end
+  end
+  
   describe "GET new" do
     it "sets @user if not logged in" do
       get :new
       expect(assigns(:user)).to be_a(User)
     end
+    
+    it_behaves_like "requires signed out" do
+      let(:action) { get :new }
+    end
   end
   
   describe "POST create" do
+    it_behaves_like "requires signed out" do
+      let(:action) { post :create }
+    end
+    
     context "with valid input" do
       before { post :create, params: { user: Fabricate.attributes_for(:user) } }
       
@@ -64,5 +78,12 @@ describe UsersController do
         expect(AppMailer.deliveries.last.body).to include('Welcome')
       end
     end
+  end
+  
+  describe "GET show" do
+    it_behaves_like "requires sign in" do
+      let(:action) { get :show }
+    end
+    
   end
 end

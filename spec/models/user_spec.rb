@@ -11,4 +11,12 @@ describe User do
   it { should_not allow_value("foo").for(:zip_code) }
   it { should_not allow_value("123456").for(:zip_code) }
   it { should_not allow_value("12345-645").for(:zip_code) }
+  
+  describe "#assign_token" do
+    it "assigns token" do
+      dan = Fabricate(:user)
+      dan.assign_token
+      expect(dan.reload.token).not_to be_nil
+    end
+  end
 end

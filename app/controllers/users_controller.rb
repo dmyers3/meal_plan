@@ -1,4 +1,8 @@
 class UsersController < ApplicationController
+  # As of now show action is used for home page after user signs up/logs in
+  before_action :redirect_logged_in, only: [:front, :new, :create]
+  before_action :redirect_logged_out, only: [:show]
+  
   def front
   end
   

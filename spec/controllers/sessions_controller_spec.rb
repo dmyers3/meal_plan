@@ -7,9 +7,17 @@ describe SessionsController do
       get :new
       expect(response).to redirect_to home_path
     end
+    
+    it_behaves_like "requires signed out" do
+      let(:action) { get :new }
+    end
   end
   
   describe "POST create" do
+    it_behaves_like "requires signed out" do
+      let(:action) { post :create }
+    end
+    
     context "with valid credentials" do
       before do 
         @dan = Fabricate(:user)
