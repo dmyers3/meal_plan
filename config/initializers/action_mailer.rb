@@ -14,7 +14,7 @@ end
 if Rails.env.production?
   # Define settings for Production SMTP Server
   Rails.application.config.action_mailer.tap do |action_mailer|
-    action_mailer.default_url_options = { :host => 'https://dmyers3-meal-plan.herokuapp.com' }
+    action_mailer.default_url_options = { :host => 'http://espn.com' }
 
     action_mailer.delivery_method = :smtp
     action_mailer.perform_deliveries = true
