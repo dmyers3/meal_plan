@@ -12,7 +12,7 @@ if Rails.env.development?
 end
 
 if Rails.env.production?
-  # Define settings for Production SMTP Server
+  # Define settings for production SMTP Server
   Rails.application.config.action_mailer.tap do |action_mailer|
     action_mailer.default_url_options = { :host => 'http://espn.com' }
 
@@ -32,7 +32,7 @@ if Rails.env.production?
 end
 
 if Rails.env.staging?
-  # Define settings for Staging SMTP Server
+  # Define settings for staging SMTP Server
   Rails.application.config.action_mailer.tap do |action_mailer|
     action_mailer.default_url_options = { :host => 'https://dmyers3-meal-plan-staging.herokuapp.com' }
 
