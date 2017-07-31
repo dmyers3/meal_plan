@@ -6,6 +6,9 @@ class UsersController < ApplicationController
   def front
   end
   
+  def select_plan
+  end
+  
   def new
     @user = User.new
   end

@@ -7,7 +7,7 @@ feature "Creating account" do
   given(:zip) { user_attributes[:zip_code] }
   
   background do
-    visit register_path
+    visit register_checkout_path
     fill_in "Email Address", with: email
     fill_in "Password", with: password
   end
