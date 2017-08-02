@@ -13,7 +13,8 @@ class SubscriptionsController < ApplicationController
     if customer.successful?
       StripeWrapper::Subscription.create(
         customer: customer.response.id, plan: @user.plan)
-      @user.customer_token = customer.customer_token
+      @user.update_attribute("customer_token", customer.customer_token)
+      @user.update_attribute("paid_member", true)
       flash[:success] = "Subscription Started!"
       redirect_to home_path
     else
