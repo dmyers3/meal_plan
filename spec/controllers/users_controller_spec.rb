@@ -31,7 +31,7 @@ describe UsersController do
       end
       
       it "redirects to the home path" do
-        expect(response).to redirect_to home_path
+        expect(response).to redirect_to new_user_subscription_path(User.last)
       end
       
       it "sets the flash success message" do

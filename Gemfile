@@ -25,6 +25,8 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'figaro'
 gem 'foreman'
 gem 'redis'
+gem 'stripe'
+gem 'stripe_event'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 
@@ -44,6 +46,7 @@ group :test do
   gem 'database_cleaner', '1.4.1'
   gem 'shoulda-matchers', '2.7.0'
   gem 'webmock'
+  gem 'vcr'
   gem 'fabrication'
   gem 'faker'
   gem 'capybara', '~> 2.13'

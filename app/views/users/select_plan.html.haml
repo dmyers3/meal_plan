@@ -2,7 +2,7 @@
   %h1 Select The Plan That Best Fits Your Needs
   %section.container
     .row
-      = bootstrap_form_tag url: register_checkout_path, class: "tester" do |f|
+      = bootstrap_form_tag url: register_checkout_path, class: "tester", method: "get" do |f|
         .col-sm-3.col-sm-offset-1
           %section.plan
             %h2 Bronze
@@ -16,14 +16,14 @@
             %h4 $4.99/month
             %p Intermediate Meal Planning
             %p 14-day Free Trial
-            = f.submit "Select Silver Plan", name: "plan", value: "Select Silver Plan"
+            = f.submit "", name: "plan", value: "Select Silver Plan"
         .col-sm-3
           %section.plan
             %h2 Gold
             %h4 $9.99/month
             %p Advanced Meal Planning
             %p 14-day Free Trial
-            = f.submit "Select Gold Plan", name: "plan", value: "Select Gold Plan"
+            = f.submit "", name: "plan", value: "Select Gold Plan"
       // .col-sm-5
       //   = bootstrap_form_for @user, layout: :horizontal, label_col: "col-sm-4", control_col: "col-sm-6" do |f|
       //     %fieldset

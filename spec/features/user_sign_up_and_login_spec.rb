@@ -7,7 +7,7 @@ feature "Creating account" do
   given(:zip) { user_attributes[:zip_code] }
   
   background do
-    visit register_checkout_path
+    visit register_path
     fill_in "Email Address", with: email
     fill_in "Password", with: password
   end
@@ -24,6 +24,49 @@ feature "Creating account" do
     click_button "Sign Up"
     expect(page).to have_content("Invalid entry")
     expect(page).to have_content("should be in the form 12345 or 12345-1234")
+  end
+end
+
+feature "Selecting Plan", js: true, driver: :poltergeist do
+  given(:user_attributes) { Fabricate.attributes_for(:user) }
+  given(:email) { user_attributes[:email] }
+  given(:password) { user_attributes[:password] }
+  given(:zip) { user_attributes[:zip_code] }
+  
+  background do
+    visit register_path
+    fill_in "Email Address", with: email
+    fill_in "Password", with: password
+    fill_in "Zip Code", with: zip
+    choose "user_plan_silver_monthly"
+    click_button "Sign Up"
+  end
+  
+  scenario "User enters valid credit card info" do
+    VCR.use_cassette("valid_stripe_subscription") do
+      within_frame(find("iframe[title='Secure payment input frame']")) do
+        fill_in 'cardnumber', with: "4242 4242 4242 4242"
+        fill_in 'exp-date', with: "10 / 21"
+        fill_in 'cvc', with: "123"
+      end
+      click_button "Start Your Subscription"
+      sleep 3
+      expect(page).to have_content "Subscription Started!"
+    end
+  end
+  
+  scenario "User enters invalid credit card info" do
+    VCR.use_cassette("invalid_stripe_subscription") do
+      within_frame(find("iframe[title='Secure payment input frame']")) do
+        fill_in 'cardnumber', with: "4000 0000 0000 0002"
+        fill_in 'exp-date', with: "10 / 21"
+        fill_in 'cvc', with: "123"
+      end
+      click_button "Start Your Subscription"
+      sleep 3
+      expect(page).to have_content "Your card was declined."
+      expect(page).to have_content "Checkout"
+    end
   end
 end
 

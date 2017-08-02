@@ -19,7 +19,7 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       AppMailer.delay.welcome(@user.id)
       flash[:success] = "Welcome to #{app_name}!"
-      redirect_to home_path
+      redirect_to new_user_subscription_path(@user)
     else
       flash[:error] = "Invalid entry - check form below for details."
       render 'new'
@@ -32,6 +32,6 @@ class UsersController < ApplicationController
   private
   
   def user_params
-    params.require(:user).permit(:email, :password, :zip_code)
+    params.require(:user).permit(:email, :password, :zip_code, :plan)
   end
 end

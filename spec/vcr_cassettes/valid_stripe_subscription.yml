@@ -1,0 +1,236 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.stripe.com/v1/customers
+    body:
+      encoding: UTF-8
+      string: email=je_langworth%40dibbert.name&source=tok_1AmRu0BFmrdX5M5iPHJPBp2t
+    headers:
+      User-Agent:
+      - Stripe/v1 RubyBindings/3.0.3
+      Authorization:
+      - Bearer sk_test_KKStXYXKeAGtRAD00YqxBAow
+      Content-Type:
+      - application/x-www-form-urlencoded
+      X-Stripe-Client-User-Agent:
+      - '{"bindings_version":"3.0.3","lang":"ruby","lang_version":"2.3.1 p112 (2016-04-26)","platform":"x86_64-linux","engine":"ruby","publisher":"stripe","uname":"Linux
+        version 4.9.17-c9 (root@30db80bfe262) (gcc version 4.9.2 (Debian 4.9.2-10)
+        ) #1 SMP Thu Mar 23 01:38:54 UTC 2017","hostname":"dmyers3-meal-plan-5144623"}'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Wed, 02 Aug 2017 18:49:05 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '1403'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, POST, HEAD, OPTIONS, DELETE
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Max-Age:
+      - '300'
+      Cache-Control:
+      - no-cache, no-store
+      Request-Id:
+      - req_Vk8QIDEIc16XuZ
+      Stripe-Version:
+      - '2017-06-05'
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "id": "cus_B8jMZLNYwyPvws",
+          "object": "customer",
+          "account_balance": 0,
+          "created": 1501699745,
+          "currency": null,
+          "default_source": "card_1AmRu0BFmrdX5M5iZU2LLsA2",
+          "delinquent": false,
+          "description": null,
+          "discount": null,
+          "email": "je_langworth@dibbert.name",
+          "livemode": false,
+          "metadata": {},
+          "shipping": null,
+          "sources": {
+            "object": "list",
+            "data": [
+              {
+                "id": "card_1AmRu0BFmrdX5M5iZU2LLsA2",
+                "object": "card",
+                "address_city": null,
+                "address_country": null,
+                "address_line1": null,
+                "address_line1_check": null,
+                "address_line2": null,
+                "address_state": null,
+                "address_zip": null,
+                "address_zip_check": null,
+                "brand": "Visa",
+                "country": "US",
+                "customer": "cus_B8jMZLNYwyPvws",
+                "cvc_check": "pass",
+                "dynamic_last4": null,
+                "exp_month": 10,
+                "exp_year": 2021,
+                "fingerprint": "CH3mOez3zK7e7PYp",
+                "funding": "credit",
+                "last4": "4242",
+                "metadata": {},
+                "name": null,
+                "tokenization_method": null
+              }
+            ],
+            "has_more": false,
+            "total_count": 1,
+            "url": "/v1/customers/cus_B8jMZLNYwyPvws/sources"
+          },
+          "subscriptions": {
+            "object": "list",
+            "data": [],
+            "has_more": false,
+            "total_count": 0,
+            "url": "/v1/customers/cus_B8jMZLNYwyPvws/subscriptions"
+          }
+        }
+    http_version: 
+  recorded_at: Wed, 02 Aug 2017 18:49:05 GMT
+- request:
+    method: post
+    uri: https://api.stripe.com/v1/subscriptions
+    body:
+      encoding: UTF-8
+      string: customer=cus_B8jMZLNYwyPvws&plan=silver_monthly
+    headers:
+      User-Agent:
+      - Stripe/v1 RubyBindings/3.0.3
+      Authorization:
+      - Bearer sk_test_KKStXYXKeAGtRAD00YqxBAow
+      Content-Type:
+      - application/x-www-form-urlencoded
+      X-Stripe-Client-User-Agent:
+      - '{"bindings_version":"3.0.3","lang":"ruby","lang_version":"2.3.1 p112 (2016-04-26)","platform":"x86_64-linux","engine":"ruby","publisher":"stripe","uname":"Linux
+        version 4.9.17-c9 (root@30db80bfe262) (gcc version 4.9.2 (Debian 4.9.2-10)
+        ) #1 SMP Thu Mar 23 01:38:54 UTC 2017","hostname":"dmyers3-meal-plan-5144623"}'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Wed, 02 Aug 2017 18:49:05 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '1586'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, POST, HEAD, OPTIONS, DELETE
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Max-Age:
+      - '300'
+      Cache-Control:
+      - no-cache, no-store
+      Request-Id:
+      - req_kh7XB9zY82RLsN
+      Stripe-Version:
+      - '2017-06-05'
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "id": "sub_B8jMa19rThWbe6",
+          "object": "subscription",
+          "application_fee_percent": null,
+          "cancel_at_period_end": false,
+          "canceled_at": null,
+          "created": 1501699745,
+          "current_period_end": 1502909345,
+          "current_period_start": 1501699745,
+          "customer": "cus_B8jMZLNYwyPvws",
+          "discount": null,
+          "ended_at": null,
+          "items": {
+            "object": "list",
+            "data": [
+              {
+                "id": "si_1AmRu1BFmrdX5M5i9xiNC6ev",
+                "object": "subscription_item",
+                "created": 1501699746,
+                "metadata": {},
+                "plan": {
+                  "id": "silver_monthly",
+                  "object": "plan",
+                  "amount": 499,
+                  "created": 1501615169,
+                  "currency": "usd",
+                  "interval": "month",
+                  "interval_count": 1,
+                  "livemode": false,
+                  "metadata": {},
+                  "name": "silver_monthly",
+                  "statement_descriptor": null,
+                  "trial_period_days": 14
+                },
+                "quantity": 1
+              }
+            ],
+            "has_more": false,
+            "total_count": 1,
+            "url": "/v1/subscription_items?subscription=sub_B8jMa19rThWbe6"
+          },
+          "livemode": false,
+          "metadata": {},
+          "plan": {
+            "id": "silver_monthly",
+            "object": "plan",
+            "amount": 499,
+            "created": 1501615169,
+            "currency": "usd",
+            "interval": "month",
+            "interval_count": 1,
+            "livemode": false,
+            "metadata": {},
+            "name": "silver_monthly",
+            "statement_descriptor": null,
+            "trial_period_days": 14
+          },
+          "quantity": 1,
+          "start": 1501699745,
+          "status": "trialing",
+          "tax_percent": null,
+          "trial_end": 1502909345,
+          "trial_start": 1501699745
+        }
+    http_version: 
+  recorded_at: Wed, 02 Aug 2017 18:49:05 GMT
+recorded_with: VCR 3.0.3

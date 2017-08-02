@@ -31,6 +31,13 @@ class ApplicationController < ActionController::Base
     redirect_to home_path if logged_in?
   end
   
+  def redirect_incorrect_user
+    if current_user.id != params[:user_id].to_i
+      flash[:error] = "You do not have access to this page."
+      redirect_to root_path
+    end
+  end
+  
   private
 
   def set_raven_context

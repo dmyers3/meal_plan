@@ -1,0 +1,19 @@
+%script(type="text/javascript")
+  var stripe = Stripe("#{ENV['STRIPE_PUBLISHABLE_KEY']}")
+
+.subscribe
+  %h1 Checkout
+  %h3 Enter Payment Info to Start Subscription
+  .row
+    .col-sm-6.col-sm-offset-1
+      = bootstrap_form_tag url: user_subscriptions_path, html: { id: 'payment-form' } do |f|
+        %fieldset
+          .form-group
+            = label_tag 'card-element', 'Credit card', class: 'control-label col-sm-2'
+            #card-element.col-sm-6
+            #card-errors(role="alert" class="col-sm-6")
+        = f.submit "Start Your Subscription"
+    .col-sm-4
+      %aside
+        = render 'details'
+= javascript_include_tag 'payment'

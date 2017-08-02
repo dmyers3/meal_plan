@@ -3,6 +3,7 @@ Fabricator(:user) do
   password { 'password' }
   zip_code { Faker::Address.zip }
   paid_member? { false }
+  plan { 'bronze' }
 end
 
 Fabricator(:paid_user, from: :user) do

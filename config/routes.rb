@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root to: 'users#front'
   get 'register/select_plan', to: 'users#select_plan'
-  get 'register/checkout', to: 'users#new'
+  get 'register', to: 'users#new'
   get 'home', to: 'users#show'
   
   get 'login', to: 'sessions#new'
@@ -13,7 +13,9 @@ Rails.application.routes.draw do
   get 'confirm_reset_password', to: 'password_tokens#confirm'
   
 
-  resources :users, only: [:create]
+  resources :users, only: [:create] do
+    resources :subscriptions, only: [:new, :create]
+  end
   
   resources :new_passwords, only: [:show, :create]
   get 'expired_token', to: 'new_passwords#expired_token'
