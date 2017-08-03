@@ -11,7 +11,6 @@
             = f.email_field :email, label: "Email Address"
             = f.password_field :password, placeholder: "Must be at least 8 characters"
             = f.text_field :zip_code, label: "Zip Code"
-            = hidden_field_tag :plan, "free", id: "hidden_plan"
       .row
         .select_plan 
           %h2 Select The Plan That Fits Your Needs

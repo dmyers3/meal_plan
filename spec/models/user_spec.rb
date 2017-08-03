@@ -10,6 +10,7 @@ describe User do
   it { should_not allow_value("foo").for(:zip_code) }
   it { should_not allow_value("123456").for(:zip_code) }
   it { should_not allow_value("12345-645").for(:zip_code) }
+  it { should have_many(:recipes) }
   
   describe "#assign_token" do
     it "assigns token" do
