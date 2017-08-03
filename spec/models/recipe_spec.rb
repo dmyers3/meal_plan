@@ -6,4 +6,5 @@ describe Recipe do
   it { should have_many(:recipe_ingredients) }
   it { should validate_uniqueness_of(:name) }
   it { should have_many(:ingredients) }
+  it { should have_many(:tags) }
 end
