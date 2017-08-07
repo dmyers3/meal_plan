@@ -12,6 +12,7 @@ describe User do
   it { should_not allow_value("12345-645").for(:zip_code) }
   it { should have_many(:recipes) }
   it { should have_many(:tags) }
+  it { should have_many(:meal_plans) }
   
   describe "#assign_token" do
     it "assigns token" do
