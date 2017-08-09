@@ -17,6 +17,11 @@ Rails.application.routes.draw do
     resources :subscriptions, only: [:new, :create]
   end
   
+  namespace :admin do
+    resources :ingredients, only: [:new, :create]
+    resources :recipes, only: [:new, :create]
+  end
+  
   resources :new_passwords, only: [:show, :create]
   get 'expired_token', to: 'new_passwords#expired_token'
   

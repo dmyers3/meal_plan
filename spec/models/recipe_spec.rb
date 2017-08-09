@@ -7,6 +7,7 @@ describe Recipe do
   it { should validate_uniqueness_of(:name) }
   it { should have_many(:ingredients) }
   it { should have_many(:tags) }
+  it { should have_many(:tag_categories) }
   it { should have_many(:meal_plan_recipes) }
   it { should have_many(:meal_plans) }
 end

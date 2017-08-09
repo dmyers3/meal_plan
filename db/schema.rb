@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170804162625) do
+ActiveRecord::Schema.define(version: 20170807191435) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -87,6 +87,7 @@ ActiveRecord::Schema.define(version: 20170804162625) do
     t.string "zip_code"
     t.string "plan"
     t.string "customer_token"
+    t.boolean "admin", default: false
   end
 
 end

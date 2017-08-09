@@ -1,0 +1,12 @@
+.ingredient 
+  %h1 Add New Ingredient
+  = bootstrap_form_for @ingredient, url: admin_ingredients_path do |f|
+    .row
+      .col-sm-4.col-sm-offset-1
+        %fieldset
+          = f.text_field :name, label: "Ingredient Name"
+          = f.collection_select :tag_categories, TagCategory.all, :id, :name, {include_hidden: false}, multiple: true
+          .form-group
+            = label_tag "new_tags", "New Tags (comma-separated)"
+            = text_field_tag "new_tags", "", class: "form-control"
+    = f.submit class: "btn btn-large col-sm-offset-1"

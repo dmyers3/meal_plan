@@ -5,5 +5,6 @@ describe Ingredient do
   it { should validate_uniqueness_of(:name) }
   it { should have_many(:recipe_ingredients) }
   it { should have_many(:recipes) }
-  it { should have_many(:tags) }
+  it { should have_many(:tags).dependent(:destroy) }
+  it { should have_many(:tag_categories) }
 end

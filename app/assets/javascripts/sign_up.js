@@ -1,18 +1,6 @@
 $('#payment-form').on('submit', function(e) {
 });
 
-// $('.bronze').on('click', function(e) {
-//   $(this).find('input[type=radio]').attr('checked', 'checked');
-// });
-
-// $('.silver').on('click', function(e) {
-//   $(this).find('input[type=radio]').attr('checked', 'checked');
-// });
-
-// $('.gold').on('click', function(e) {
-//   $(this).find('input[type=radio]').attr('checked', 'checked');
-// });
-
 $('.plans').on('click', function(e) {
   $plan = clickedPlan(e);
   if ($plan) {
@@ -37,7 +25,6 @@ function unhighlightOldPlan() {
 function highlightNewPlan(plan) {
   plan.toggleClass('highlight');
 }
-
 
 
 // Reenable submit button

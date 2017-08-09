@@ -9,3 +9,7 @@ end
 Fabricator(:paid_user, from: :user) do
   paid_member { true }
 end
+
+Fabricator(:admin, from: :user) do
+  admin { true }
+end

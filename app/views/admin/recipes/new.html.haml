@@ -1,0 +1,15 @@
+.recipe 
+  %h1 Add New Recipe
+  = bootstrap_form_for @recipe, url: admin_recipes_path do |f|
+    .row
+      .col-sm-4.col-sm-offset-1
+        %fieldset
+          = f.text_field :name, label: "Recipe Name"
+          = f.number_field :prep_time, label: "Prep Time (in minutes)"
+          = f.number_field :cook_time, label: "Cook Time (in minutes)"
+          = f.text_area :instructions, rows: 12
+          = f.collection_select :tag_categories, TagCategory.all, :id, :name, {include_hidden: false}, multiple: true
+          .form-group
+            = label_tag "new_tags", "New Tags (comma-separated)"
+            = text_field_tag "new_tags", "", class: "form-control"
+    = f.submit class: "btn btn-large col-sm-offset-1"
