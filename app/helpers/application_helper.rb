@@ -14,4 +14,18 @@ module ApplicationHelper
   def check_radio(plan)
     params[:user].try(:[], :plan) == plan
   end
+  
+  def ingredient_options
+    Ingredient.all.map do |ingredient|
+      [ingredient.name, ingredient.id]
+    end
+  end
+  
+  def recipe_units
+    [
+      ['Mass/Weight', ['oz', 'lb', 'mg', 'g', 'kg']],
+      ['Volume', ['tsp', 'tbsp', 'fl oz', 'c', 'pt', 'qt', 'gal', 'ml', 'l']],
+      ["Size", ["small", "medium", "large"]]
+    ]
+  end
 end

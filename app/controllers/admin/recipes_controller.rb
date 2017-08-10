@@ -5,6 +5,16 @@ class Admin::RecipesController < AdminsController
   
   def create
     @recipe = Recipe.new(recipe_params)
+    @recipe.user = current_user
+    if @recipe.save
+      @recipe.attach_ingredients(params)
+      @recipe.attach_tags(params, current_user.id)
+      flash[:success] = "Recipe added!"
+      redirect_to new_admin_recipe_path
+    else
+      flash[:error] = "Recipe not added."
+      render 'new'
+    end
   end
   
   private

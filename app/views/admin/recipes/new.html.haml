@@ -2,8 +2,9 @@
   %h1 Add New Recipe
   = bootstrap_form_for @recipe, url: admin_recipes_path do |f|
     .row
-      .col-sm-4.col-sm-offset-1
+      .col-sm-4.col-sm-offset-2
         %fieldset
+          %h4 Recipe Info
           = f.text_field :name, label: "Recipe Name"
           = f.number_field :prep_time, label: "Prep Time (in minutes)"
           = f.number_field :cook_time, label: "Cook Time (in minutes)"
@@ -11,5 +12,28 @@
           = f.collection_select :tag_categories, TagCategory.all, :id, :name, {include_hidden: false}, multiple: true
           .form-group
             = label_tag "new_tags", "New Tags (comma-separated)"
-            = text_field_tag "new_tags", "", class: "form-control"
-    = f.submit class: "btn btn-large col-sm-offset-1"
+            = text_field_tag "new_tags", params[:new_tags], class: "form-control"
+      .col-sm-5
+        %fieldset.ingredient_container
+          %h4 Ingredients
+          .form-group.row.ingredient_input
+            .col-sm-2
+              = label_tag('quantity')
+              = text_field_tag('quantity', nil, class: 'form-control', name: 'quantity[]')
+            .col-sm-3
+              = label_tag('unit')
+              = select_tag('unit', grouped_options_for_select(recipe_units), class: 'form-control', name: 'unit[]')
+            .col-sm-5
+              = label_tag('ingredient_name')
+              = select_tag('ingredient_name', options_for_select(ingredient_options), class: 'form-control', name: 'ing_id[]')
+            .col-sm-1
+              = label_tag('delete')
+              %button(type="button" id="delete" class="ingredient delete_ingredient form-control" aria-label="Delete")
+                %span(class="glyphicon glyphicon-minus-sign")
+          .form-group.row.col-sm-offset-1
+            = label_tag "add_ingredient", "Add Ingredient", class: "add_ingredient"
+            %button(type="button" id="add_ingredient"class="ingredient add_ingredient")
+              %span(class="glyphicon glyphicon-plus-sign")
+    .create_recipe
+      = f.submit class: "btn btn-large"
+= javascript_include_tag "add_recipe"      

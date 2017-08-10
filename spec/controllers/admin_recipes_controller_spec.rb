@@ -42,86 +42,98 @@ describe Admin::RecipesController do
         cat1 = Fabricate(:tag_category)
         cat2 = Fabricate(:tag_category)
         cat3 = Fabricate(:tag_category)
-        post :create, params: { recipe: { name: recipe_params[:name], 
-          prep_time: recipe_params[:prep_time], cook_time: recipe_params[:cook_time],
-          instructions: recipe_params[:instructions], 
-          tag_categories: [cat1.id, cat2.id]}, new_tags: "New, tag"}
+        chicken = Fabricate(:ingredient)
+        rice = Fabricate(:ingredient)
+        post :create, params: { 
+          recipe: {
+            name: recipe_params[:name], prep_time: recipe_params[:prep_time], 
+            cook_time: recipe_params[:cook_time], instructions: recipe_params[:instructions],
+            tag_categories: [cat1.id, cat2.id]
+          }, 
+          new_tags: "New, tag", ing_id: ["#{chicken.id}", "#{rice.id}"], 
+          unit: ["lb", "c"], quantity: ["1", "2"]
+        }
       end
       
-      # it "creates a recipe" do
-      #   expect(Recipe.count).to eq(1)
-      # end
+      it "creates a recipe" do
+        expect(Recipe.count).to eq(1)
+        
+      end
       
-    #   it "creates new tag categories" do
-    #     expect(TagCategory.count).to eq(5)
-    #   end
+      it "creates new tag categories" do
+        expect(TagCategory.count).to eq(5)
+      end
       
-    #   it "downcases tag categories" do
-    #     expect(TagCategory.find_by(name: 'new')).to be_a(TagCategory)
-    #   end
+      it "downcases tag categories" do
+        expect(TagCategory.find_by(name: 'new')).to be_a(TagCategory)
+      end
       
-    #   it "strips tag categories of whitespace" do
-    #     expect(TagCategory.find_by(name: 'tag')).to be_a(TagCategory)
-    #   end
+      it "strips tag categories of whitespace" do
+        expect(TagCategory.find_by(name: 'tag')).to be_a(TagCategory)
+      end
       
-    #   it "creates tags belonging to ingredient" do
-    #     expect(Ingredient.last.tags.count).to eq(4)
-    #   end
+      it "creates tags belonging to recipe" do
+        expect(Recipe.last.tags.count).to eq(4)
+      end
       
-    #   it "redirects to the new admin ingredient path" do
-    #     expect(response).to redirect_to new_admin_ingredient_path
-    #   end
+      it "redirects to the new admin recipe path" do
+        expect(response).to redirect_to new_admin_recipe_path
+      end
       
-    #   it "sets a flash success message" do
-    #     expect(flash[:success]).not_to be_empty
-    #   end
+      it "sets a flash success message" do
+        expect(flash[:success]).not_to be_empty
+      end
     end
     
-    # context "with invalid input" do
-    #   before do
-    #     dan = Fabricate(:admin)
-    #     session[:user_id] = dan.id
-    #     cat1 = Fabricate(:tag_category)
-    #     post :create, params: { ingredient: { name: ""}, new_tags: "new"}
-    #   end
+    context "with invalid input" do
+      before do
+        dan = Fabricate(:admin)
+        session[:user_id] = dan.id
+        cat1 = Fabricate(:tag_category)
+        post :create, params: { recipe: { name: ""}, new_tags: "new"}
+      end
       
-    #   it "doesn't create an ingredient" do
-    #     expect(Ingredient.count).to eq(0)
-    #   end
+      it "doesn't create an ingredient" do
+        expect(Recipe.count).to eq(0)
+      end
       
-    #   it "sets a flash error message" do
-    #     expect(flash[:error]).not_to be_empty
-    #   end
+      it "sets a flash error message" do
+        expect(flash[:error]).not_to be_empty
+      end
       
-    #   it "renders the new ingredient form" do
-    #     expect(response).to render_template :new
-    #   end
+      it "renders the new recipe form" do
+        expect(response).to render_template :new
+      end
       
-    #   it "doesn't create a new tag_category" do
-    #     expect(TagCategory.count).to eq(1)
-    #   end
-    # end
+      it "doesn't create a new tag_category" do
+        expect(TagCategory.count).to eq(1)
+      end
+    end
     
-    # context "with no tags attached" do
-    #   before do
-    #     dan = Fabricate(:admin)
-    #     session[:user_id] = dan.id
-    #     cat1 = Fabricate(:tag_category)
-    #     post :create, params: { ingredient: { name: ingredient_params[:name]}, new_tags: "  "}
-    #   end
+    context "with no tags attached" do
+      before do
+        dan = Fabricate(:admin)
+        session[:user_id] = dan.id
+        cat1 = Fabricate(:tag_category)
+        chicken = Fabricate(:ingredient)
+        post :create, params: { 
+          recipe: { name: recipe_params[:name]}, new_tags: "  ",
+          ing_id: ["#{chicken.id}"], unit: ["lb"], quantity: ["1"]
+        }
+      end
       
-    #   it "creates an ingredient" do
-    #     expect(Ingredient.count).to eq(1)
-    #   end
+      it "creates an recipe" do
+        expect(Recipe.count).to eq(1)
+      end
       
-    #   it "doesn't create new tag categories" do
-    #     expect(TagCategory.count).to eq(1)
-    #   end
+      it "doesn't create new tag categories" do
+        expect(TagCategory.count).to eq(1)
+      end
       
-    #   it "doesn't create any tag associations for ingredient" do
-    #     expect(Ingredient.last.tags.size).to eq(0)
-    #     expect(Ingredient.last.tag_categories.size).to eq(0)
-    #   end
-    # end
+      it "doesn't create any tag associations for recipe" do
+        expect(Recipe.last.tags.size).to eq(0)
+        expect(Recipe.last.tag_categories.size).to eq(0)
+      end
+    end
   end
 end
