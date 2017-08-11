@@ -43,22 +43,6 @@ describe Admin::IngredientsController do
         expect(Ingredient.count).to eq(1)
       end
       
-      it "creates new tag categories" do
-        expect(TagCategory.count).to eq(5)
-      end
-      
-      it "downcases tag categories" do
-        expect(TagCategory.find_by(name: 'new')).to be_a(TagCategory)
-      end
-      
-      it "strips tag categories of whitespace" do
-        expect(TagCategory.find_by(name: 'tag')).to be_a(TagCategory)
-      end
-      
-      it "creates tags belonging to ingredient" do
-        expect(Ingredient.last.tags.count).to eq(4)
-      end
-      
       it "redirects to the new admin ingredient path" do
         expect(response).to redirect_to new_admin_ingredient_path
       end

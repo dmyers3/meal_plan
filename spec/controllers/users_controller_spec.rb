@@ -30,12 +30,24 @@ describe UsersController do
         expect(User.count).to eq(1)
       end
       
-      it "redirects to the home path" do
-        expect(response).to redirect_to new_user_subscription_path(User.last)
+      it "redirects to the home path if user chooses bronze plan" do
+        expect(response).to redirect_to home_path
       end
       
       it "sets the flash success message" do
         expect(flash[:success]).not_to be_empty
+      end
+    end
+    
+    context "with gold or silver plan" do
+      it "redirects to the home path if user chooses bronze plan" do
+        post :create, params: { user: Fabricate.attributes_for(:user, plan: "silver_monthly") }
+        expect(response).to redirect_to new_user_subscription_path(User.last)
+      end
+      
+      it "redirects to the home path if user chooses bronze plan" do
+        post :create, params: { user: Fabricate.attributes_for(:user, plan: "gold_monthly") }
+        expect(response).to redirect_to new_user_subscription_path(User.last)
       end
     end
     

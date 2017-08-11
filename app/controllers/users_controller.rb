@@ -16,7 +16,11 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       AppMailer.delay.welcome(@user.id)
       flash[:success] = "Welcome to #{app_name}!"
-      redirect_to new_user_subscription_path(@user)
+      if @user.plan != "bronze"
+        redirect_to new_user_subscription_path(@user)
+      else
+        redirect_to home_path
+      end
     else
       flash[:error] = "Invalid entry - check form below for details."
       render 'new'

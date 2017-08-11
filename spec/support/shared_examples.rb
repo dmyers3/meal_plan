@@ -32,9 +32,3 @@ shared_examples "requires admin" do
     expect(response).to redirect_to root_path
   end
 end
-
-shared_examples "is taggable" do
-  describe "#attach_tags" do
-    
-  end
-end

@@ -60,21 +60,6 @@ describe Admin::RecipesController do
         
       end
       
-      it "creates new tag categories" do
-        expect(TagCategory.count).to eq(5)
-      end
-      
-      it "downcases tag categories" do
-        expect(TagCategory.find_by(name: 'new')).to be_a(TagCategory)
-      end
-      
-      it "strips tag categories of whitespace" do
-        expect(TagCategory.find_by(name: 'tag')).to be_a(TagCategory)
-      end
-      
-      it "creates tags belonging to recipe" do
-        expect(Recipe.last.tags.count).to eq(4)
-      end
       
       it "redirects to the new admin recipe path" do
         expect(response).to redirect_to new_admin_recipe_path
@@ -93,7 +78,7 @@ describe Admin::RecipesController do
         post :create, params: { recipe: { name: ""}, new_tags: "new"}
       end
       
-      it "doesn't create an ingredient" do
+      it "doesn't create a recipe" do
         expect(Recipe.count).to eq(0)
       end
       
