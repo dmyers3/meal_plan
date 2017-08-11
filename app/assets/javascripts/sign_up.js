@@ -27,7 +27,3 @@ function highlightNewPlan(plan) {
 }
 
 
-// Reenable submit button
-// $('input[type="submit"]').each(function(index, value) {
-//   $(this).prop('disabled', false);
-// });

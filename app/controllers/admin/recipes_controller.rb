@@ -1,4 +1,8 @@
 class Admin::RecipesController < AdminsController
+  def index
+    @recipes = Recipe.all
+  end
+  
   def new
     @recipe = Recipe.new
   end

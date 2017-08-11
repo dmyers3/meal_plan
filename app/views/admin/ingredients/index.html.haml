@@ -1,0 +1,9 @@
+= render 'admin/header'
+.ingredient-index
+  .row
+    .col-sm-2.col-sm-offset-1
+      %h4 Ingredient Name
+  - @ingredients.each do |ingredient|
+    .row
+      .col-sm-2.col-sm-offset-1
+        %p= ingredient.name
