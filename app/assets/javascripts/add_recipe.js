@@ -6,6 +6,17 @@ $('.ingredient_container').on('click', function(e) {
   }
 });
 
+$('#new_recipe').on('submit', function(e) {
+  e.preventDefault();
+  disableSubmitButton();
+  removeErrors();
+  if (validInput()) {
+    this.submit();
+  } else {
+    enableSubmitButton();
+  }
+});
+
 function addIngredient(e) {
   e.preventDefault();
   var ingredientInput = $('.ingredient_input').first().clone();
@@ -27,4 +38,34 @@ function clearIngredientValues(ingredient) {
   $(ingredient).closest('.ingredient_input').find('input, select').each(function(index, obj) {
     $(obj).val('');
   });
+}
+
+function removeErrors() {
+  $('.has-error').each(function(index, element) {
+    $(element).removeClass('has-error');
+  });
+  
+  $('.help-block').each(function(index, element) {
+    $(element).remove();
+  });
+}
+
+function validInput() {
+  var valid = true
+  $('.quantity, .unit, .ingredient_name, .recipe_name').each(function(index, element) {
+    if ($(element).find('input').val() === "" || $(element).find('select').val() === null) {
+      $(element).append("<span class=help-block>can't be blank</span>");
+      $(element).addClass("has-error");
+      valid = false
+    }
+  });
+  return valid
+}
+
+function disableSubmitButton() {
+  $('input[type="submit"]').prop('disabled', true);
+}
+
+function enableSubmitButton() {
+  $('input[type="submit"]').prop('disabled', false);
 }

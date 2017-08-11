@@ -5,7 +5,7 @@
       .col-sm-4.col-sm-offset-2
         %fieldset
           %h4 Recipe Info
-          = f.text_field :name, label: "Recipe Name"
+          = f.text_field :name, label: "Recipe Name", wrapper: { class: "recipe_name" }
           = f.number_field :prep_time, label: "Prep Time (in minutes)"
           = f.number_field :cook_time, label: "Cook Time (in minutes)"
           = f.text_area :instructions, rows: 12
@@ -17,14 +17,14 @@
         %fieldset.ingredient_container
           %h4 Ingredients
           .form-group.row.ingredient_input
-            .col-sm-2
-              = label_tag('quantity')
-              = text_field_tag('quantity', nil, class: 'form-control', name: 'quantity[]')
-            .col-sm-3
-              = label_tag('unit')
+            .col-sm-2.quantity
+              = label_tag('quantity', "Quantity", class: "control-label")
+              = number_field_tag('quantity', nil, class: 'form-control', name: 'quantity[]', step: 0.01, min: 0)
+            .col-sm-3.unit
+              = label_tag('unit', "Unit", class: "control-label")
               = select_tag('unit', grouped_options_for_select(recipe_units), class: 'form-control', name: 'unit[]')
-            .col-sm-5
-              = label_tag('ingredient_name')
+            .col-sm-5.ingredient_name
+              = label_tag('ingredient_name', "Ingredient Name", class: "control-label")
               = select_tag('ingredient_name', options_for_select(ingredient_options), class: 'form-control', name: 'ing_id[]')
             .col-sm-1
               = label_tag('delete')
@@ -35,5 +35,5 @@
             %button(type="button" id="add_ingredient"class="ingredient add_ingredient")
               %span(class="glyphicon glyphicon-plus-sign")
     .create_recipe
-      = f.submit class: "btn btn-large"
+      = f.submit class: "btn btn-large", data: { disable_with: false }
 = javascript_include_tag "add_recipe"      
