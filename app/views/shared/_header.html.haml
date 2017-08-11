@@ -5,6 +5,23 @@
     %li= link_to "How it Works", ""
     %li= link_to "Pricing", ""
     %li= link_to "Blog", ""
+    - if logged_in? && current_user.admin?
+      %li.dropdown
+        %a(href="#" id="dlabel" role="button" data-toggle="dropdown" class="dropdown-toggle" data-target="#")
+          Recipes
+          %b.caret
+        %ul.dropdown-menu(role="menu" aria-labelledby="dlabel")
+          %li
+            = link_to "View Recipes", admin_recipes_path
+            = link_to "Create Recipe", new_admin_recipe_path
+      %li.dropdown
+        %a(href="#" id="dlabel" role="button" data-toggle="dropdown" class="dropdown-toggle" data-target="#")
+          Ingredients
+          %b.caret
+        %ul.dropdown-menu(role="menu" aria-labelledby="dlabel")
+          %li
+            = link_to "View Ingredients", admin_ingredients_path
+            = link_to "Create Ingredient", new_admin_ingredient_path
   %ul.col-md-4.clearfix.pull-right
     - if !logged_in?
       %li= link_to "Login", login_path

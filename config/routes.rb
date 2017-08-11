@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   root to: 'users#front'
-  get 'register/select_plan', to: 'users#select_plan'
   get 'register', to: 'users#new'
   get 'home', to: 'users#show'
   
