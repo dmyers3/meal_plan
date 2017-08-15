@@ -4,8 +4,6 @@ machine:
 deployment:
   production:
     branch: master
-    heroku:
-      appname: dmyers3-meal-plan
     commands:
       - heroku maintenance:on --app dmyers3-meal-plan
       - heroku pg:backups capture --dmyers3-meal-plan
