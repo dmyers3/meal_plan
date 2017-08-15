@@ -6,7 +6,7 @@ deployment:
     branch: master
     commands:
       - heroku maintenance:on --app dmyers3-meal-plan
-      - heroku pg:backups capture --dmyers3-meal-plan
+      - heroku pg:backups capture --app dmyers3-meal-plan
       - git push git@heroku.com:dmyers3-meal-plan.git $CIRCLE_SHA1:refs/heads/master
       - heroku run rake db:migrate --app dmyers3-meal-plan
       - heroku maintenance:off --app dmyers3-meal-plan
