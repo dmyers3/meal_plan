@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :ingredients, only: [:index, :show, :new, :create]
     resources :recipes, only: [:index, :show, :new, :create]
+    resources :weekly_specials, only: [:create]
   end
   
   resources :new_passwords, only: [:show, :create]
