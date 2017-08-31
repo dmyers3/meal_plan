@@ -7,6 +7,7 @@ describe Ingredient do
   it { should have_many(:recipes) }
   it { should have_many(:tags).dependent(:destroy) }
   it { should have_many(:tag_categories) }
+  it { should have_many(:grocery_products) }
   
   describe "#attach_tags" do
     let(:dan) { Fabricate(:admin) }
