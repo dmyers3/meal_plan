@@ -1,0 +1,28 @@
+.grocery-product-index
+  .row
+    .col-sm-3.col-sm-offset-1
+      %h4 Product Name
+    .col-sm-1
+      %h4 Quantity
+    .col-sm-1
+      %h4 Unit
+    .col-sm-2
+      %h4 Associated Ingredient
+  - @grocery_products.each do |product|
+    .row
+      .col-sm-3.col-sm-offset-1
+        %p= product.name
+      .col-sm-1
+        %p= product.quantity
+      .col-sm-1       
+        %p= product.unit
+      .col-sm-2
+        - if product.ingredient
+          %p
+            = product.ingredient
+            %a Delete
+        - else
+          = text_field_tag :name, nil, :class => "search-query", :placeholder => "Search"
+  .row
+    .col-sm-5.col-sm-offset-1
+      = paginate(@grocery_products)

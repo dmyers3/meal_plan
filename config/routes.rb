@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     resources :recipes, only: [:index, :show, :new, :create]
     resources :grocery_specials, only: [:create]
     put 'grocery_products', to: 'grocery_products#update'
+    resources :grocery_products, only: [:index]
   end
   
   resources :new_passwords, only: [:show, :create]

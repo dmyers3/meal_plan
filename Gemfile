@@ -30,6 +30,7 @@ gem 'stripe_event'
 gem 'mechanize'
 gem "webdrivers"
 gem 'watir'
+gem 'kaminari'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 
