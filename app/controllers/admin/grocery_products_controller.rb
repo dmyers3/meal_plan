@@ -3,6 +3,10 @@ class Admin::GroceryProductsController < ApplicationController
   
   def index
     @grocery_products = GroceryProduct.order("name").page(params[:page])
+    options = {}
+    # if params[:name]
+    #   @ingredients = Ingredient.search(params[:name], options).records.to_a
+    # end
   end
   
   def update

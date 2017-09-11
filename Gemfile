@@ -31,6 +31,8 @@ gem 'mechanize'
 gem "webdrivers"
 gem 'watir'
 gem 'kaminari'
+gem 'elasticsearch-model'
+gem 'elasticsearch-rails'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 
