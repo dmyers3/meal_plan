@@ -24,11 +24,10 @@
               %a Delete
           - else
             .form-group
-              = search_field_tag :name, params[:name], name: "name[]", :class => "form-control", :placeholder => "Search"
+              = search_field_tag :name, params[:name], name: "name_#{product.id}", class: "form-control typeahead", id: "ingredient_search", :placeholder => "Search"
     .form-group
       = button_tag "Submit", type: "submit", class: "btn btn-primary", style: "display: none"
   - if params[:name]
-    - binding.pry
     - @ingredients.each do |ingredient|
       .row
         .col-sm-3.col-sm-offset-1
@@ -36,3 +35,4 @@
   .row
     .col-sm-5.col-sm-offset-1
       = paginate(@grocery_products)
+= javascript_include_tag "ingredient"

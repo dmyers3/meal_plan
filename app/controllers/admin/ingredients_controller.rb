@@ -21,6 +21,16 @@ class Admin::IngredientsController < AdminsController
     end
   end
   
+  def autocomplete
+    render json: Ingredient.search(params[:query], {
+      fields: ["name"],
+      match: :word_start,
+      limit: 10,
+      load: false,
+      misspellings: {below: 5}
+    })
+  end
+  
   private
   
   def ingredient_params

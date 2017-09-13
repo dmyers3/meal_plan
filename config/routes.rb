@@ -17,7 +17,11 @@ Rails.application.routes.draw do
   end
   
   namespace :admin do
-    resources :ingredients, only: [:index, :show, :new, :create]
+    resources :ingredients, only: [:index, :show, :new, :create] do
+      collection do
+        get :autocomplete
+      end
+    end
     resources :recipes, only: [:index, :show, :new, :create]
     resources :grocery_specials, only: [:create]
     put 'grocery_products', to: 'grocery_products#update'
