@@ -1,3 +1,3 @@
 Fabricator(:grocery_chain) do
-  name { Faker::Lorem.words(2) }
+  name { Faker::Lorem.words(2).join(" ") }
 end

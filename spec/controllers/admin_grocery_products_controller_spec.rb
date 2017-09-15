@@ -17,4 +17,22 @@ describe Admin::GroceryProductsController do
       end
     end
   end
+  
+  describe "GET index" do
+    let(:harris_teeter) { Fabricate(:grocery_chain) }
+    let(:milk) { Fabricate(:grocery_product, name: "milk", grocery_chain: harris_teeter) }
+    let(:bread) { Fabricate(:grocery_product, name: "bread", grocery_chain: harris_teeter) }
+    
+    it "redirects non admin to root page" do
+      get :index
+      expect(response).to redirect_to root_path
+    end
+    
+    it "sets @grocery_products instance variable sorted alphabetically" do
+      dan = Fabricate(:admin)
+      session[:user_id] = dan.id
+      get :index
+      expect(assigns(:grocery_products)).to eq([bread, milk])
+    end
+  end
 end

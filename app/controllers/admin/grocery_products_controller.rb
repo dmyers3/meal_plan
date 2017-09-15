@@ -1,12 +1,10 @@
-class Admin::GroceryProductsController < ApplicationController
+class Admin::GroceryProductsController < AdminsController
   skip_before_action :verify_authenticity_token, :only => [:update]
+  skip_before_action :redirect_logged_out, :only => [:update]
+  skip_before_action :redirect_non_admin, :only => [:update]
   
   def index
     @grocery_products = GroceryProduct.order("name").page(params[:page])
-    options = {}
-    # if params[:name]
-    #   @ingredients = Ingredient.search(params[:name], options).records.to_a
-    # end
   end
   
   def update

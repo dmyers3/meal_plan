@@ -1,5 +1,5 @@
 .grocery-product-index
-  = form_tag admin_grocery_products_path, method: :get do
+  = form_tag admin_grocery_product_ingredient_connections_path do
     .row
       .col-sm-3.col-sm-offset-1
         %h4 Product Name
@@ -17,14 +17,15 @@
           %p= product.quantity
         .col-sm-1       
           %p= product.unit
-        .col-sm-2
+        .col-sm-3
           - if product.ingredient
-            %p
-              = product.ingredient
-              %a Delete
+            %p.form-group
+              = product.ingredient.name
+              %a Edit
+              = link_to "Delete", admin_grocery_product_ingredient_connection_path(product.id), method: "delete"
           - else
             .form-group
-              = search_field_tag :name, params[:name], name: "name_#{product.id}", class: "form-control typeahead", id: "ingredient_search", :placeholder => "Search"
+              = search_field_tag :name, params[:name], name: "name[#{product.id}]", class: "form-control typeahead", id: "ingredient_search", :placeholder => "Search"
     .form-group
       = button_tag "Submit", type: "submit", class: "btn btn-primary", style: "display: none"
   - if params[:name]
