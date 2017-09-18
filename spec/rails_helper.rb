@@ -8,10 +8,13 @@ require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
 require 'capybara/rails'
 require 'capybara/email/rspec'
+require 'capybara/poltergeist'
 require 'sidekiq/testing'
 require 'database_cleaner'
 require 'vcr'
 require 'webmock/rspec'
+require 'phantomjs'
+
 
 Sidekiq::Testing.inline!
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -34,6 +37,7 @@ Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
+  config.include Capybara::DSL
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
@@ -67,4 +71,15 @@ VCR.configure do |config|
   config.cassette_library_dir = "spec/vcr_cassettes"
   config.hook_into :webmock
   config.allow_http_connections_when_no_cassette = true
+end
+
+Capybara.register_driver :poltergeist do |app|
+  options = {
+            js_errors: false,
+            timeout: 60,
+            debug: false,
+            phantomjs: Phantomjs.path,
+            phantomjs_options: ['--ignore-ssl-errors=yes', '--ssl-protocol=TLSv1']
+            }
+  Capybara::Poltergeist::Driver.new(app, options)
 end
